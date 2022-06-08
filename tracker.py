@@ -3,8 +3,9 @@ import time
 from colorama import *
 from art import *
 
-def track(message):
-    URL = "https://api.hypixel.net/player?key=046ce573-8b06-40f2-96b2-86fcb834be15&uuid=" + requests.get(f"https://api.mojang.com/users/profiles/minecraft/{message}").json()['id']
+
+def track(message,API_KEY):
+    URL = "https://api.hypixel.net/player?key={API_KEY}&uuid=" + requests.get(f"https://api.mojang.com/users/profiles/minecraft/{message}").json()['id']
     print(URL)
     data = requests.get(URL)
     datajson = data.json()
@@ -31,9 +32,10 @@ init()
 print(Fore.MAGENTA + '')
 tprint('TroTracker')
 print('--------------------- >> By iTrojang#7855 << ---------------------')
+api_key = input("[TroTracker]Enter api key use /api new on hypixel >> ")
 while True:
     cmd = input('[TroTracker]Enter Command (/help For List) >> ')
     if cmd == '/help':
         print("---[Command List]--- \n /help - shows this message. \n /track <ign> - Sets a Tracker On a specific ign.")
     if cmd[:7] == '/track ':
-        track(cmd[7:])
+        track(cmd[7:],api_key)
