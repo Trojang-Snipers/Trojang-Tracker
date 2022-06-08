@@ -5,7 +5,7 @@ from art import *
 
 
 def track(message,apikey):
-    URL = "https://api.hypixel.net/player?key={API_KEY}&uuid=" + requests.get(f"https://api.mojang.com/users/profiles/minecraft/{message}").json()['id']
+    URL = f"https://api.hypixel.net/player?key={apikey}&uuid=" + requests.get(f"https://api.mojang.com/users/profiles/minecraft/{message}").json()['id']
     print(URL)
     data = requests.get(URL)
     datajson = data.json()
