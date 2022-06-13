@@ -5,6 +5,8 @@ from art import *
 
 
 def track(message,apikey):
+    countwin = 1
+    countloss = 1
     URL = f"https://api.hypixel.net/player?key={apikey}&uuid=" + requests.get(f"https://api.mojang.com/users/profiles/minecraft/{message}").json()['id']
     print(URL)
     data = requests.get(URL)
@@ -19,8 +21,6 @@ def track(message,apikey):
         e = data.json()
         loss = (e['player']['stats']['Bedwars']["losses_bedwars"])
         win = (e['player']['stats']['Bedwars']["wins_bedwars"])
-        countwin = 1
-        countloss = 1
         if win == wins + countwin:
             countwin += 1
             print(requests.get(f"https://api.mojang.com/users/profiles/minecraft/{message}").json()['name'] + ' Has Won A Match Of Bedwars')
